@@ -11,6 +11,11 @@ import minesweeper_model.Observable;
  * @author Yoann
  */
 public class Minesweeper extends AbstractModel{
+  
+    public Grid getGrid(){
+        return this.grid;
+    }
+    
   //Définit l'opérateur
   public void setOperateur(String ope){    
     //On lance le calcul

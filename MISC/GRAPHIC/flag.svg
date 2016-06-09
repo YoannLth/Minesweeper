@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="24px"
+   version="1.1"
+   viewBox="0 0 24 24"
+   width="24px"
+   id="svg3336"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="flag.svg"
+   inkscape:export-filename="C:\Users\Yoann\Desktop\Minesweeper\MISC\GRAPHIC\flag.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <metadata
+     id="metadata3350">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="837"
+     id="namedview3348"
+     showgrid="false"
+     inkscape:zoom="27.833333"
+     inkscape:cx="5.4431138"
+     inkscape:cy="12"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3336" />
+  <title
+     id="title3338" />
+  <desc
+     id="desc3340" />
+  <defs
+     id="defs3342" />
+  <g
+     id="miu"
+     transform="matrix(0.85625484,0,0,0.85625484,1.2935761,1.5815879)"
+     style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1">
+    <g
+       id="Artboard-1"
+       transform="translate(-827,-443)">
+      <g
+         id="slice"
+         transform="translate(215,119)" />
+      <path
+         d="m 832,466 0,-21 0.97778,0 c 0.0654,0.64009 0,21 0,21 L 832,466 Z m 2.01805,-19.66694 c 1.07154,0.48268 2.47859,0.3315 4.32157,-0.76336 2.87723,-1.70927 5.02002,-1.76931 6.73991,-1.02979 0.35875,0.15425 0.60751,0.31467 0.74712,0.43469 l 0.17018,0.1463 0,9.16782 -0.8076,-0.69428 c -0.0676,-0.0581 -0.23322,-0.16492 -0.49593,-0.27789 -1.42671,-0.61345 -3.24101,-0.5803 -5.85429,0.97217 -1.80831,1.07427 -3.51209,1.12955 -4.77114,0.80559 l -0.0498,-8.76125 z"
+         id="editor-flag-notification-glyph"
+         style="fill:#f9f9f9"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

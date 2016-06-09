@@ -12,14 +12,16 @@ package minesweeper_model;
 public class Box {
     private int posX;
     private int posY;
-    private BoxContent value;
+    private BoxType boxType;
+    private int boxValue;
     private boolean isDiscovered;
     
     public Box(int x, int y)
     {
         this.posX = x;
         this.posY = y;
-        this.value = BoxContent.EMPTY;
+        this.boxType = BoxType.EMPTY;
+        this.boxValue = 0;
     }
     
     public void setPosX(int x){
@@ -30,12 +32,16 @@ public class Box {
         this.posY = y;
     }
     
-    public void setValue(BoxContent val){
-        this.value = val;
+    public void setBoxType(BoxType bt){
+        this.boxType = bt;
     }
     
     public void setIsDiscovered(boolean isDisc){
         this.isDiscovered = isDisc;
+    }
+    
+    public void setBoxValue(int bv){
+        this.boxValue = bv;
     }
     
     
@@ -49,11 +55,15 @@ public class Box {
         return this.posY;
     }
     
-    public BoxContent getValue(){
-        return this.value;
+    public BoxType getBoxType(){
+        return this.boxType;
     }
     
     public boolean getIsDiscovered(){
         return this.isDiscovered;
+    }
+    
+    public int getBoxValue(){
+        return this.boxValue;
     }
 }

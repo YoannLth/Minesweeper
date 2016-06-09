@@ -9,8 +9,9 @@ package minesweeper_model;
  *
  * @author Yoann
  */
-public enum BoxContent {
+public enum BoxType {
     EMPTY,
     MINE,
-    NUMBER
+    NUMBER,
+    FLAG
 }

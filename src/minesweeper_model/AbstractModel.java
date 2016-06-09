@@ -17,6 +17,9 @@ public abstract class AbstractModel implements Observable{
     protected double result;
     protected String operateur = "", operande = "";
     private ArrayList<Observer> listObserver = new ArrayList<Observer>();   
+    
+    public abstract Grid getGrid();
+    
     //Efface 
     public abstract void reset();
 
