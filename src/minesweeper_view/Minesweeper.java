@@ -30,6 +30,8 @@ import minesweeper_model.Grid;
  */
 public class Minesweeper extends Application{
     private minesweeper_model.Minesweeper minesweeperModel;
+    private static final double MIN_HEIGHT_BOX = 64.0; // in px
+    private static final double MIN_WIDTH_BOX = 64.0; // in px
     
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -54,7 +56,7 @@ public class Minesweeper extends Application{
         for (int i = 0; i<row; i++) {
             for (int j = 0; j<column; j++) {
                 Box b = g.getBox(i, j);
-                String bDisplayText = b.getBoxType().name();
+                /*String bDisplayText = b.getBoxType().name();
                 if(bDisplayText == "NUMBER"){
                     bDisplayText = String.valueOf(b.getBoxValue());
                 }
@@ -66,21 +68,47 @@ public class Minesweeper extends Application{
                 t.setWrappingWidth(70);
                 t.setFont(Font.font ("Verdana", 20));
                 t.setFill(Color.WHITE);
-                t.setTextAlignment(TextAlignment.CENTER);
-                        try {
-                            Button button = new Button(bDisplayText);
-                            button.setStyle("-fx-background-image: url('/ressources/flag.png')");
+                t.setTextAlignment(TextAlignment.CENTER);*/
+                try {
+                    String bDisplayText = b.getBoxType().name();
+                    int numberOfCloseMines = b.getBoxValue();
+                    
+                    Button button = new Button();
+                    button.setMinHeight(MIN_HEIGHT_BOX);
+                    button.setMinWidth(MIN_WIDTH_BOX);
+                    
+                    switch(bDisplayText){
+                        case "NUMBER" :
+                            System.out.println(bDisplayText + " : " + numberOfCloseMines);
+                            button.setStyle(" -fx-background-image: url('/ressources/" + numberOfCloseMines + ".png')");
+                            break;
+                        case "EMPTY" :
+                            System.out.println("EMPTY");
+                            //button.setStyle(" -fx-background-image: url('/ressources/flag.png')");
+                            break;
+                        case "MINE" :
+                            System.out.println("EMPTY");
+                            button.setStyle(" -fx-background-image: url('/ressources/mine.png')");
+                            break;
+                        default :
+                            System.out.println("BUG switch");
+                            break;
+                    }
+                    
+                    //button.setStyle("-fx-background-color: #3465A4; -fx-background-image: url('/ressources/flag.png')");  CUSTOM Style
 
-                            gPane.add(button, i, j);
+                    gPane.add(button, i, j);
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 /*Image image = new Image("http://icons.iconarchive.com/icons/eponas-deeway/colobrush/128/heart-2-icon.png");
                 ImageView pic = new ImageView();
                 pic.setImage(image);
                 Button button = new Button(bDisplayText, pic);
                 gPane.add(button, i, j);*/
+                
+                
             }
             
             
