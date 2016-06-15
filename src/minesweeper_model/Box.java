@@ -5,16 +5,19 @@
  */
 package minesweeper_model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  *
  * @author Yoann
  */
-public class Box {
+public class Box extends java.util.Observable {
     private int posX;
     private int posY;
     private BoxType boxType;
     private int boxValue;
-    private boolean isDiscovered;
+    private int isDiscovered;
     
     public Box(int x, int y)
     {
@@ -22,6 +25,7 @@ public class Box {
         this.posY = y;
         this.boxType = BoxType.EMPTY;
         this.boxValue = 0;
+        this.isDiscovered = 0;
     }
     
     public void setPosX(int x){
@@ -36,15 +40,16 @@ public class Box {
         this.boxType = bt;
     }
     
-    public void setIsDiscovered(boolean isDisc){
-        this.isDiscovered = isDisc;
+    public void setDiscovered(){
+        this.isDiscovered += 1;
+        setChanged();
+        notifyObservers();
     }
     
     public void setBoxValue(int bv){
         this.boxValue = bv;
-    }
-    
-    
+    }  
+ 
     
     
     public int getPosX(){
@@ -59,7 +64,7 @@ public class Box {
         return this.boxType;
     }
     
-    public boolean getIsDiscovered(){
+    public int getIsDiscovered(){
         return this.isDiscovered;
     }
     

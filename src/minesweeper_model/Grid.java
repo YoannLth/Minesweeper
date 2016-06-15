@@ -5,6 +5,7 @@
  */
 package minesweeper_model;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -88,6 +89,75 @@ public class Grid {
           } catch (Exception e) {
             System.out.println("Index hors tableau" + e);
           }
+    }
+    
+    public ArrayList getNeighbour(Box b){
+        //System.out.println("OULOULOU");
+        ArrayList neighb = new ArrayList();
+        int i = b.getPosX();
+        int j = b.getPosY();
+        
+        for(int k = i-1;k<=i+1;k++){
+            for(int l = j-1;l<=j+1;l++){
+                
+                
+                
+                if((k>=0) && (k<HEIGHT_GRID)){
+                    if((l>=0) && (l<WIDTH_GRID)){
+                        //if(((k != i) || (l != j)) && ((k != i-1) && (l != j))){
+                        if( (k != i) || (l != j) ){
+                            if(  ((k == i-1) && (l==j-1)) || ((k == i+1) && (l==j-1)) || ((k == i-1) && (l==j+1) || ((k == i+1) && (l==j+1)) )  ){
+                                System.out.println("DIAGONALE");
+                            }
+                            else{
+                                neighb.add(this.grid[k][l]);
+                                System.out.println("Ajout du voisin a la pos : ["+k+"]" + "["+l+"]");
+                             
+                            }
+                        }
+                    }
+                    else{
+                        //System.out.println("index incorrect");
+                    }
+                }
+                else{
+                    //System.out.println("index incorrect");
+                }
+            }
+        }
+        System.out.println("Nombre de voisins de la case ["+i+"]" + "["+j+"] : "+neighb.size());
+
+        return neighb;
+    }
+    
+    public void showEmptyBox(Box b){
+        if(b.getBoxType() == BoxType.EMPTY){
+            ArrayList toTreat = new ArrayList();
+            ArrayList everTreated = new ArrayList();
+            ArrayList neighbs;
+            toTreat.add(b);
+
+            while(toTreat.size() != 0){
+               Box currentBox = (Box) toTreat.get(0);
+               everTreated.add(toTreat.get(0));
+               toTreat.remove(0);
+               neighbs = getNeighbour(currentBox);
+               for(int i=0; i<neighbs.size(); i++){
+                   Box neighb = (Box) neighbs.get(i);
+                   if (neighb.getBoxType() == BoxType.EMPTY){
+                       if((toTreat.contains(neighb) == false) && (everTreated.contains(neighb) == false)){
+                           neighb.setDiscovered();
+                           System.out.println("ON AJOUTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                           toTreat.add(neighb);
+                       }
+                       else{
+                           
+                       }
+                   }
+               }
+               neighbs.clear();           
+            }
+        }
     }
     
     public int getWidth(){

@@ -7,6 +7,7 @@ package minesweeper_view;
 
 import javafx.scene.image.Image;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,15 +24,37 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import minesweeper_model.Box;
 import minesweeper_model.Grid;
+import javafx.scene.*;
+
+import java.util.Observable;
+import java.util.Observer;
+import javafx.application.Application;
+
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.Shadow;
+
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 /**
  *
  * @author Yoann
  */
-public class Minesweeper extends Application{
+public class Minesweeper extends Application implements Observer{
     private minesweeper_model.Minesweeper minesweeperModel;
     private static final double MIN_HEIGHT_BOX = 64.0; // in px
     private static final double MIN_WIDTH_BOX = 64.0; // in px
+    private HashMap boxAndButton = new HashMap();
     
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -56,19 +79,7 @@ public class Minesweeper extends Application{
         for (int i = 0; i<row; i++) {
             for (int j = 0; j<column; j++) {
                 Box b = g.getBox(i, j);
-                /*String bDisplayText = b.getBoxType().name();
-                if(bDisplayText == "NUMBER"){
-                    bDisplayText = String.valueOf(b.getBoxValue());
-                }
-                if(bDisplayText == "EMPTY"){
-                    bDisplayText = "";
-                }
-                Text t = new Text(bDisplayText);
                 
-                t.setWrappingWidth(70);
-                t.setFont(Font.font ("Verdana", 20));
-                t.setFill(Color.WHITE);
-                t.setTextAlignment(TextAlignment.CENTER);*/
                 try {
                     String bDisplayText = b.getBoxType().name();
                     int numberOfCloseMines = b.getBoxValue();
@@ -77,38 +88,23 @@ public class Minesweeper extends Application{
                     button.setMinHeight(MIN_HEIGHT_BOX);
                     button.setMinWidth(MIN_WIDTH_BOX);
                     
-                    switch(bDisplayText){
-                        case "NUMBER" :
-                            System.out.println(bDisplayText + " : " + numberOfCloseMines);
-                            button.setStyle(" -fx-background-image: url('/ressources/" + numberOfCloseMines + ".png')");
-                            break;
-                        case "EMPTY" :
-                            System.out.println("EMPTY");
-                            //button.setStyle(" -fx-background-image: url('/ressources/flag.png')");
-                            break;
-                        case "MINE" :
-                            System.out.println("EMPTY");
-                            button.setStyle(" -fx-background-image: url('/ressources/mine.png')");
-                            break;
-                        default :
-                            System.out.println("BUG switch");
-                            break;
-                    }
-                    
-                    //button.setStyle("-fx-background-color: #3465A4; -fx-background-image: url('/ressources/flag.png')");  CUSTOM Style
-
                     gPane.add(button, i, j);
+                    b.addObserver(this);
+                    
+                    boxAndButton.put(b, button);
+                    
+                    button.setOnAction(new EventHandler<ActionEvent>() {
+
+                        @Override
+                        public void handle(ActionEvent event) {
+                            b.setDiscovered();
+                            g.showEmptyBox(b);
+                        }
+                    });
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-                /*Image image = new Image("http://icons.iconarchive.com/icons/eponas-deeway/colobrush/128/heart-2-icon.png");
-                ImageView pic = new ImageView();
-                pic.setImage(image);
-                Button button = new Button(bDisplayText, pic);
-                gPane.add(button, i, j);*/
-                
-                
+                }  
             }
             
             
@@ -124,6 +120,38 @@ public class Minesweeper extends Application{
         primaryStage.setScene(scene);
         primaryStage.show();
         
+    }
+
+
+    @Override
+    public void update(Observable o, Object arg) {
+        Box b = (Box) o;
+        Button but = (Button) boxAndButton.get(b);
+        
+        String bDisplayText = b.getBoxType().name();
+        int numberOfCloseMines = b.getBoxValue();
+        
+        if(b.getIsDiscovered() == 1){
+            switch(bDisplayText){
+                case "NUMBER" :
+                    but.setStyle("-fx-background-color: #3465A4; -fx-background-image: url('/ressources/" + numberOfCloseMines + ".png')");
+                    break;
+                case "EMPTY" :
+                    but.setStyle("-fx-background-color: #3465A4;"); 
+                    break;
+                case "MINE" :
+                    but.setStyle("-fx-background-color: #3465A4; -fx-background-image: url('/ressources/mine.png')");
+                    break;
+                default :
+                    System.out.println("BUG switch");
+                    break;
+            }
+        
+            System.out.println("CLICK RECEIVED");
+        }
+        else{
+            System.out.println("BUTTON EVER CLICKED");
+        }
     }
     
 }
