@@ -160,6 +160,14 @@ public class Grid {
         }
     }
     
+    public void showAll(){
+        for(int i=0 ; i<HEIGHT_GRID; i++){
+            for(int j=0; j<WIDTH_GRID; j++){
+                this.grid[i][j].setDiscovered();
+            }
+        }
+    }
+    
     public int getWidth(){
         return this.HEIGHT_GRID;
     }

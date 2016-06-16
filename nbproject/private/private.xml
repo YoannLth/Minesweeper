@@ -4,11 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Yoann/Desktop/Minesweeper/src/minesweeper_model/Box.java</file>
-            <file>file:/C:/Users/Yoann/Desktop/Minesweeper/src/minesweeper_model/AbstractModel.java</file>
             <file>file:/C:/Users/Yoann/Desktop/Minesweeper/src/minesweeper_view/Minesweeper.java</file>
-            <file>file:/C:/Users/Yoann/Desktop/Minesweeper/src/minesweeper_model/Minesweeper.java</file>
             <file>file:/C:/Users/Yoann/Desktop/Minesweeper/src/minesweeper_model/Grid.java</file>
-            <file>file:/C:/Users/Yoann/Desktop/Minesweeper/src/minesweeper_model/BoxType.java</file>
         </group>
     </open-files>
 </project-private>
