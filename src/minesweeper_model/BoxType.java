@@ -13,5 +13,4 @@ public enum BoxType {
     EMPTY,
     MINE,
     NUMBER,
-    FLAG
 }
