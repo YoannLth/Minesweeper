@@ -27,6 +27,7 @@ public class Grid {
     
     public void initGrid()
     {
+        System.out.println("NOUVELLE GRILLE");
         for(int i=0; i<WIDTH_GRID; i++)
         {
             for(int j=0; j< HEIGHT_GRID; j++)
@@ -48,6 +49,7 @@ public class Grid {
         }
         
         calculNumberBox();
+        System.out.println("TERMINE");
     }
     
     public boolean addMineInit(int i, int j){
@@ -87,7 +89,7 @@ public class Grid {
                 this.grid[x][y].setBoxValue(actualValue+1);
             }
           } catch (Exception e) {
-            System.out.println("Index hors tableau" + e);
+            //System.out.println("Index hors tableau" + e);
           }
     }
     
@@ -107,11 +109,11 @@ public class Grid {
                         //if(((k != i) || (l != j)) && ((k != i-1) && (l != j))){
                         if( (k != i) || (l != j) ){
                             if(  ((k == i-1) && (l==j-1)) || ((k == i+1) && (l==j-1)) || ((k == i-1) && (l==j+1) || ((k == i+1) && (l==j+1)) )  ){
-                                System.out.println("DIAGONALE");
+                                //System.out.println("DIAGONALE");
                             }
                             else{
                                 neighb.add(this.grid[k][l]);
-                                System.out.println("Ajout du voisin a la pos : ["+k+"]" + "["+l+"]");
+                                //System.out.println("Ajout du voisin a la pos : ["+k+"]" + "["+l+"]");
                              
                             }
                         }
@@ -125,8 +127,7 @@ public class Grid {
                 }
             }
         }
-        System.out.println("Nombre de voisins de la case ["+i+"]" + "["+j+"] : "+neighb.size());
-
+       
         return neighb;
     }
     
@@ -147,7 +148,7 @@ public class Grid {
                    if (neighb.getBoxType() == BoxType.EMPTY){
                        if((toTreat.contains(neighb) == false) && (everTreated.contains(neighb) == false)){
                            neighb.setDiscovered();
-                           System.out.println("ON AJOUTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                           neighb.setFlagged(0);
                            toTreat.add(neighb);
                        }
                        else{
@@ -163,7 +164,7 @@ public class Grid {
     public void showAll(){
         for(int i=0 ; i<HEIGHT_GRID; i++){
             for(int j=0; j<WIDTH_GRID; j++){
-                this.grid[i][j].setDiscovered();
+                this.grid[i][j].setDiscoveredAndConservFlag();
             }
         }
     }
@@ -178,5 +179,39 @@ public class Grid {
     
     public Box getBox(int i, int j){
         return this.grid[i][j];
+    }
+    
+    @Override
+    public String toString(){
+        System.out.println("DEBUT");
+        String line = "";
+        for(int i=0 ; i<WIDTH_GRID; i++){
+            for(int j=0; j<HEIGHT_GRID; j++){
+                //line += this.grid[i][j].toString();
+                System.out.print(this.grid[j][i].toString());
+            }
+            System.out.println(" ");
+            //line += "\n";
+        }
+        //System.out.println(line);
+        
+        System.out.println("FIN");
+        return line;
+        
+    }
+    
+    public boolean isGameFinished()
+    {
+        for(int i=0; i<HEIGHT_GRID; i++)
+        {
+            for(int j=0; j<WIDTH_GRID; j++)
+            {
+                if((this.grid[i][j].getBoxType() != BoxType.MINE) && (this.grid[i][j].getIsDiscovered() == 0))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

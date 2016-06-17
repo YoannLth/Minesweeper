@@ -18,7 +18,8 @@ import javafx.stage.Stage;
  *
  * @author Yoann
  */
-public class MinesweeperGame{
+public class MinesweeperGame {
+
     /**
      * @param args the command line arguments
      */
